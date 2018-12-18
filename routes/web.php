@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
+Route::get('/','HomeController@login');
+Route::get('register','HomeController@register');
+Route::post('store','HomeController@store');
+Route::post('postlogin','HomeController@postlogin');
+
+
+Route::group(['middleware' => 'checkloggedin'], function(){
+	Route::get('index','HomeController@index');
+	Route::get('logout','HomeController@logout');
 });
